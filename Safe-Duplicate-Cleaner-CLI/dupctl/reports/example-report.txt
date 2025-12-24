@@ -1,0 +1,101 @@
+========================================
+RAPORT EXEMPLE DUPCTL - 20251225_025630
+========================================
+Data: Wed Dec 25 02:56:30 UTC 2025
+Scope: /home/user/Downloads
+Politică: ./policies/default.policy
+Mod: DRY-RUN (sigur)
+
+=== REZULTAT SCANARE DUPLICATE ===
+Fișiere scanate: 1,247
+Grupuri cu mărime similară: 23
+
+Grup 1: 2 fișiere identice, mărime 1,048,576 bytes
+Hash: a1b2c3d4e5f6789012345678901234567890abcdef...
+----------------------------------------
+  📄 /home/user/Downloads/document.pdf
+      1,048,576 bytes  2025-12-24 14:30:00
+  📄 /home/user/Downloads/document (1).pdf
+      1,048,576 bytes  2025-12-24 14:25:00
+
+Grup 2: 3 fișiere identice, mărime 2,097,152 bytes
+Hash: b2c3d4e5f6789012345678901234567890abcdef12...
+----------------------------------------
+  📄 /home/user/Downloads/photo.jpg
+      2,097,152 bytes  2025-12-23 16:45:00
+  📄 /home/user/Downloads/photo_copy.jpg
+      2,097,152 bytes  2025-12-22 11:20:00
+  📄 /home/user/Downloads/photo_backup.jpg
+      2,097,152 bytes  2025-12-21 09:15:00
+
+=== REZULTAT SCANARE VERSIUNI VECHI ===
+Versiuni vechi detectate: 7
+
+📄 /home/user/Downloads/report_old.pdf
+   Clasificare: VERSIUNE VECHE
+   Sufix: _old
+   Versiune de bază: report.pdf
+   Diferență de timp: 12 zile
+   ✓ Confirmat: mai vechi
+
+📄 /home/user/Downloads/data.bak
+   Clasificare: BACKUP FILE
+   Sufix: .bak
+   Versiune de bază: data.xlsx
+   Diferență de timp: 5 zile
+   ✓ Confirmat: mai vechi
+
+📄 /home/user/Downloads/presentation (copy).pptx
+   Clasificare: COPY FILE
+   Pattern: (copy)
+   Versiune de bază: presentation.pptx
+   Diferență de timp: 2 zile
+   ✓ Confirmat: mai vechi
+
+=== SUGESTII DE CURĂȚARE ===
+
+1. DEDUPLICARE:
+   - Grup 1: Păstrează document.pdf, elimină "document (1).pdf"
+   - Grup 2: Păstrează photo.jpg, elimină photo_copy.jpg și photo_backup.jpg
+   - Spațiu economisit: ~4MB
+
+2. VERSIUNI VECHI:
+   - report_old.pdf → carantină (12 zile mai vechi)
+   - data.bak → carantină (5 zile mai vechi)
+   - presentation (copy).pptx → carantină (2 zile mai vechi)
+   - Spațiu economisit: ~15MB
+
+=== DECIZII APLICATE ===
+Politica de preferință: newer → user-data → larger
+
+Grup duplicate 1:
+  ✓ Ales: /home/user/Downloads/document.pdf (mai nou cu 5 minute)
+  ❌ Eliminat: /home/user/Downloads/document (1).pdf
+
+Grup duplicate 2:
+  ✓ Ales: /home/user/Downloads/photo.jpg (cel mai nou)
+  ❌ Eliminat: photo_copy.jpg, photo_backup.jpg
+
+Versiuni vechi:
+  ✓ Mutat în carantină: report_old.pdf, data.bak, presentation (copy).pptx
+
+========================================
+REZUMAT OPERAȚIUNE
+========================================
+Fișiere procesate: 1,247
+Duplicate găsite: 5 fișiere în 2 grupuri
+Versiuni vechi găsite: 7 fișiere
+Spațiu potențial economisit: 19MB
+Acțiuni executate: 0 (mod dry-run activ)
+
+========================================
+PROTECȚII APLICATE
+========================================
+Fișiere verificate: 1,247
+Fișiere protejate (omise): 0
+Scope validat: ✅ SIGUR
+Politică aplicată: default.policy
+
+========================================
+RAPORT GENERAT - 20251225_025630
+========================================

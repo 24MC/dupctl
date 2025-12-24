@@ -1,0 +1,19 @@
+# Directorii și fișiere protejate - INTERZISE ABSOLUT
+# Format: calea/absolute # comentariu
+
+# Directoare de sistem critice
+/bin # Binare esențiale sistem
+/sbin # Binare administrative sistem
+/lib # Librării sistem
+/lib64 # Librării 64-bit sistem
+/usr # Sistem de fișiere secundar
+/etc # Configurări sistem
+/boot # Bootloader și kernel
+/proc # Sistem de fișiere virtual procese
+/sys # Sistem de fișiere virtual kernel
+/run # Fișiere runtime
+/var/lib # Date sistem
+
+# Directoare specifice pot fi adăugate aici
+# /opt
+# /snap

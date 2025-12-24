@@ -1,0 +1,67 @@
+# Politica implicită pentru Duplicate & Version Cleaner
+# Această politică definește regulile de protecție și scope-ul de operare
+
+# ===== REGULI DE PROTECȚIE (DENY-BY-DEFAULT) =====
+
+# 1. Extensii de fișiere interzise (configurări, cod sursă)
+BANNED_EXTENSIONS="conf cfg ini yaml yml json toml service env c cpp h py js ts go rs java sh php pl rb lua sql xml properties"
+
+# 2. Fișiere dotfile critice interzise
+BANNED_DOTFILES=".ssh .gitconfig .bashrc .zshrc .profile .bash_profile .zsh_profile .vimrc .gitignore .dockerignore"
+
+# 3. Directoare de sistem interzise (din protected.paths)
+# 4. Orice fișiere în /etc, /usr/etc, /opt/etc
+
+# ===== SCOPE SIGUR PERMIS =====
+
+# Directoare user-data preferate (în ordinea priorității)
+SAFE_DIRECTORIES="$HOME/Downloads $HOME/Documents $HOME/Pictures $HOME/Videos $HOME/Music $HOME/Desktop"
+
+# ===== POLITICI PENTRU VERSIUNI VECHI =====
+
+# Sufixe care indică versiuni vechi
+OLD_VERSION_SUFFIXES="old bak backup copy orig save tmp temp"
+
+# Pattern-uri regex pentru versiuni vechi
+# Format: pattern_descriere
+OLD_VERSION_PATTERNS="\.old$ Old file
+_bak$ Backup file
+\.bak$ Backup file
+ \(1\)$ Windows copy
+ \(2\)$ Windows copy
+_copy$ Copy file
+\.orig$ Original file
+\.save$ Save file
+\.tmp$ Temporary file
+\.temp$ Temporary file
+_v[0-9]+$ Version numbered
+_v[0-9]+\.[0-9]+$ Version with dot
+-[0-9]+$ Numbered version
+\.[0-9]+$ Dotted version"
+
+# ===== POLITICI PENTRU DUPLICATE =====
+
+# Mărimea minimă pentru a considera un fișier (în bytes)
+MIN_FILE_SIZE=1
+
+# Mărimea maximă pentru hash complet (în MB, 0 = nelimitat)
+MAX_SIZE_FULL_HASH=100
+
+# ===== DECIZII PREFERENȚIALE =====
+
+# Când există duplicate, preferă:
+# - newer = fișierele mai noi
+# - user-data = fișierele din directoarele user-ului
+# - larger = fișierele mai mari (pentru versiuni)
+PREFERENCE_ORDER="newer user-data larger"
+
+# Locație pentru carantină
+QUARANTINE_DIR="/tmp/dupctl_quarantine"
+
+# ===== LOGGING ȘI RAPORTARE =====
+
+# Nivel de logare: DEBUG, INFO, WARN, ERROR
+LOG_LEVEL="INFO"
+
+# Păstrează rapoarte în
+REPORT_DIR="./reports"
